@@ -5,14 +5,21 @@ env:
     EXAMPLE_VAR: "I am an example variable"
   parameter-store:
     EXAMPLE_SSM_PARAM: example-ssm-param
+  secrets-manager:
+    EXAMPLE_SECRET: example
 
 phases:
   pre_build:
     commands:
       - echo Printing the example variable from Codebuild
       - echo $EXAMPLE_VAR
+      - echo $EXAMPLE_VAR > example_var.txt
       - echo Printing the example variable retrieved from SSM Paramater store
       - echo $EXAMPLE_SSM_PARAM
+      - echo $EXAMPLE_SSM_PARAM > example_ssm_param.txt
+      - echo Printing the example variable retrieved from Secrets Manager
+      - echo $EXAMPLE_SECRET
+      - echo $EXAMPLE_SECRET > example_secret.txt
   install:
     commands:
       - echo ***TERRAFORM INIT***
@@ -23,3 +30,9 @@ phases:
       - terraform validate
       - echo ***CODE LINTING***
       - tflint
+  
+artifacts:
+  files:
+   - example_var.txt
+   - example_ssm_param.txt
+   - example_secret.txt

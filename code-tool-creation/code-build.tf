@@ -74,6 +74,13 @@ resource "aws_iam_policy" "codebuild_policy" {
       ],
       "Effect": "Allow",
       "Resource": "${aws_ssm_parameter.example.arn}"
+    },
+    {
+      "Action": [
+        "secretsmanager:GetSecretValue"
+      ],
+      "Effect": "Allow",
+      "Resource": "${aws_secretsmanager_secret.example.arn}"
     }
   ]
 }

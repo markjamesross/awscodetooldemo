@@ -117,6 +117,7 @@ resource "aws_codepipeline" "pipeline" {
       version          = "1"
       provider         = "CodeBuild"
       input_artifacts  = ["SourceOutput"]
+      output_artifacts = ["ValidateOutput"]
       run_order        = 4
       configuration = {
         ProjectName = aws_codebuild_project.codebuild_validate.id
