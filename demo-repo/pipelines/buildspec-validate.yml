@@ -1,0 +1,25 @@
+version: 0.2
+
+env:
+  variables:
+    EXAMPLE_VAR: "I am an example variable"
+  parameter-store:
+    EXAMPLE_SSM_PARAM: example-ssm-param
+
+phases:
+  pre_build:
+    commands:
+      - echo Printing the example variable from Codebuild
+      - echo $EXAMPLE_VAR
+      - echo Printing the example variable retrieved from SSM Paramater store
+      - echo $EXAMPLE_SSM_PARAM
+  install:
+    commands:
+      - echo ***TERRAFORM INIT***
+      - terraform init
+  build:
+    commands:
+      - echo ***TERRAFORM VALIDATE***
+      - terraform validate
+      - echo ***CODE LINTING***
+      - tflint

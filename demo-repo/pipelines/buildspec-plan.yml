@@ -1,8 +1,11 @@
 version: 0.2
+
 phases:
   install:
     commands:
+      - echo ***TERRAFORM INIT***
       - terraform init
   build:
     commands:
-      - terraform apply --auto-approve
+      - echo ***TERRAFORM PLAN***
+      - terraform plan

@@ -1,0 +1,11 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo ***TERRAFORM INIT***
+      - terraform init
+  build:
+    commands:
+      - echo ***CODE SECURITY ANALYSIS***
+      - tfsec

@@ -79,6 +79,8 @@ resource "aws_codepipeline" "pipeline" {
   depends_on = [
     aws_codebuild_project.codebuild_plan,
     aws_codebuild_project.codebuild_apply,
+    aws_codebuild_project.codebuild_validate,
+    aws_codebuild_project.codebuild_security,
     aws_codecommit_repository.repo
   ]
   name     = "${var.repo_name}-${var.repo_branch}-Pipeline"
@@ -106,6 +108,37 @@ resource "aws_codepipeline" "pipeline" {
       }
     }
   }
+  stage {
+    name = "Validate"
+    action {
+      name             = "Validate"
+      category         = "Build"
+      owner            = "AWS"
+      version          = "1"
+      provider         = "CodeBuild"
+      input_artifacts  = ["SourceOutput"]
+      run_order        = 4
+      configuration = {
+        ProjectName = aws_codebuild_project.codebuild_validate.id
+      }
+    }
+  }
+
+  stage {
+    name = "Security"
+    action {
+      name             = "Security"
+      category         = "Build"
+      owner            = "AWS"
+      version          = "1"
+      provider         = "CodeBuild"
+      input_artifacts  = ["SourceOutput"]
+      run_order        = 4
+      configuration = {
+        ProjectName = aws_codebuild_project.codebuild_security.id
+      }
+    }
+  }
 
   stage {
     name = "Plan"
@@ -116,11 +149,22 @@ resource "aws_codepipeline" "pipeline" {
       version          = "1"
       provider         = "CodeBuild"
       input_artifacts  = ["SourceOutput"]
-      output_artifacts = ["PlanOutput"]
-      run_order        = 3
+      run_order        = 4
       configuration = {
         ProjectName = aws_codebuild_project.codebuild_plan.id
       }
+    }
+  }
+
+  stage {
+    name = "Approval"
+    action {
+      name             = "Approval"
+      category         = "Approval"
+      run_order        = 5
+      owner            = "AWS"
+      version          = "1"
+      provider         = "Manual"
     }
   }
 
@@ -133,7 +177,7 @@ resource "aws_codepipeline" "pipeline" {
       version          = "1"
       provider         = "CodeBuild"
       input_artifacts  = ["SourceOutput"]
-      run_order        = 2
+      run_order        = 6
       configuration = {
         ProjectName = aws_codebuild_project.codebuild_apply.id
       }
