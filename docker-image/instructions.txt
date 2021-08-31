@@ -1,4 +1,0 @@
-docker build . -t terraform
-docker tag terraform:latest {enter name of ecr repo here}:latest
-aws ecr get-login-password --region {region} | docker login --username AWS --password-stdin {enter name of ecr repo here}
-docker push {enter name of ecr repo here}:latest

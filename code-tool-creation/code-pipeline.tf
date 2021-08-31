@@ -81,7 +81,7 @@ resource "aws_codepipeline" "pipeline" {
     aws_codebuild_project.codebuild_apply,
     aws_codebuild_project.codebuild_validate,
     aws_codebuild_project.codebuild_security,
-    aws_codecommit_repository.repo
+    null_resource.upload_to_codecommit
   ]
   name     = "${var.repo_name}-${var.repo_branch}-Pipeline"
   role_arn = aws_iam_role.codepipeline_role.arn

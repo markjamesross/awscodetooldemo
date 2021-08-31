@@ -18,16 +18,6 @@ output "repo_clone_url_ssh" {
   description = "Repository clone url ssh"
 }
 
-output "pipeline_arn" {
-  value       = aws_codepipeline.pipeline.arn
-  description = "Pipeline ARN"
-}
-
-output "pipeline_id" {
-  value       = aws_codepipeline.pipeline.id
-  description = "Pipeline ID"
-}
-
 output "registry_id" {
   value       = aws_ecr_repository.image_repo.registry_id
   description = "ECR Repo ID"

@@ -1,4 +1,0 @@
-Create CodeCommit credentials via AWS with IAM username
-Clone repository locally
-cd to repo's directory locally
-git init .

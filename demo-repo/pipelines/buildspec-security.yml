@@ -1,11 +1,18 @@
 version: 0.2
 
 phases:
+  pre_build:
+    commands:
+      - terraform -version
+      - terragrunt -version
+      - tflint --version
+      - tfsec -version
+      - aws --version
   install:
     commands:
       - echo ***TERRAFORM INIT***
-      - terraform init
+      - ./pipelines/execute.sh "terraform init"
   build:
     commands:
       - echo ***CODE SECURITY ANALYSIS***
-      - tfsec
+      - ./pipelines/execute.sh "tfsec"
