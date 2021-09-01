@@ -11,7 +11,8 @@ resource "aws_codecommit_repository" "repo" {
 resource "null_resource" "upload_to_codecommit" {
   depends_on = [
     aws_codecommit_repository.repo,
-    null_resource.create_ecr_image2
+    null_resource.create_ecr_image2,
+    local_file.global_vars
   ]
 
   provisioner "local-exec" {

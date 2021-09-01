@@ -11,8 +11,8 @@ phases:
   install:
     commands:
       - echo ***TERRAFORM INIT***
-      - ./pipelines/execute.sh "terraform init"
+      - ./pipelines/execute.sh "terragrunt init"
   build:
     commands:
       - echo ***TERRAFORM PLAN***
-      - ./pipelines/execute.sh "terraform plan"
+      - ./pipelines/execute.sh "terragrunt plan"

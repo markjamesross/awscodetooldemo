@@ -11,8 +11,8 @@ phases:
   install:
     commands:
       - echo ***TERRAFORM INIT***
-      - ./pipelines/execute.sh "terraform init"
+      - ./pipelines/execute.sh "terragrunt init"
   build:
     commands:
       - echo ***TERRAFORM APPLY***
-      - ./pipelines/execute.sh "terraform apply --auto-approve"
+      - ./pipelines/execute.sh "terragrunt apply --auto-approve"
