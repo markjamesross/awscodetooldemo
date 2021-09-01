@@ -105,10 +105,10 @@ resource "aws_codebuild_project" "codebuild_plan" {
     image_pull_credentials_type = "SERVICE_ROLE"
   }
   source {
-    type = "CODEPIPELINE"
+    type      = "CODEPIPELINE"
     buildspec = "pipelines/buildspec-plan.yml"
   }
-}       
+}
 
 resource "aws_codebuild_project" "codebuild_apply" {
   depends_on = [
@@ -129,10 +129,10 @@ resource "aws_codebuild_project" "codebuild_apply" {
     image_pull_credentials_type = "SERVICE_ROLE"
   }
   source {
-    type = "CODEPIPELINE"
+    type      = "CODEPIPELINE"
     buildspec = "pipelines/buildspec-apply.yml"
   }
-}        
+}
 
 resource "aws_codebuild_project" "codebuild_validate" {
   depends_on = [
@@ -153,10 +153,10 @@ resource "aws_codebuild_project" "codebuild_validate" {
     image_pull_credentials_type = "SERVICE_ROLE"
   }
   source {
-    type = "CODEPIPELINE"
+    type      = "CODEPIPELINE"
     buildspec = "pipelines/buildspec-validate.yml"
   }
-}   
+}
 
 resource "aws_codebuild_project" "codebuild_security" {
   depends_on = [
@@ -177,7 +177,7 @@ resource "aws_codebuild_project" "codebuild_security" {
     image_pull_credentials_type = "SERVICE_ROLE"
   }
   source {
-    type = "CODEPIPELINE"
+    type      = "CODEPIPELINE"
     buildspec = "pipelines/buildspec-security.yml"
   }
 }   

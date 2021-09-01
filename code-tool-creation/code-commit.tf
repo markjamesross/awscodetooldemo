@@ -17,7 +17,7 @@ resource "null_resource" "upload_to_codecommit" {
 
   provisioner "local-exec" {
     interpreter = ["/bin/bash", "-c"]
-    command = <<EOF
+    command     = <<EOF
 cd ../..
 git clone ${aws_codecommit_repository.repo.clone_url_http}
 cd ${var.repo_name}

@@ -9,7 +9,7 @@ resource "aws_s3_bucket" "example" {
   server_side_encryption_configuration {
     rule {
       apply_server_side_encryption_by_default {
-        sse_algorithm     = "AES256"
+        sse_algorithm = "AES256"
       }
     }
   }
@@ -18,16 +18,16 @@ resource "aws_s3_bucket" "example" {
     enabled = true
   }
 
-  tags = { 
-    Name = "${data.aws_caller_identity.current.account_id}-demo-bucket" 
+  tags = {
+    Name = "${data.aws_caller_identity.current.account_id}-demo-bucket"
   }
 }
 
 #Apply block public access
 resource "aws_s3_bucket_public_access_block" "example" {
-	bucket = aws_s3_bucket.example.id
-	block_public_acls   = true
-	block_public_policy = true
+  bucket                  = aws_s3_bucket.example.id
+  block_public_acls       = true
+  block_public_policy     = true
   restrict_public_buckets = true
-  ignore_public_acls = true
+  ignore_public_acls      = true
 }

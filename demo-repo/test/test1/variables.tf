@@ -1,3 +1,3 @@
-variable region {}
-variable account_id {}
-variable pipeline_role {}
+variable "region" {}
+variable "account_id" {}
+variable "pipeline_role" {}

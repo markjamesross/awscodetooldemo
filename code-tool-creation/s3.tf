@@ -4,7 +4,7 @@ resource "aws_s3_bucket" "artifact_bucket" {
   bucket_prefix = "${data.aws_caller_identity.current.account_id}-artifact-bucket"
   acl           = "private"
   force_destroy = true
-  tags = merge({ Name = "${data.aws_caller_identity.current.account_id}-artifact-bucket" }, var.tags)
+  tags          = merge({ Name = "${data.aws_caller_identity.current.account_id}-artifact-bucket" }, var.tags)
 }
 
 #Terraform Remote State
@@ -14,5 +14,5 @@ resource "aws_s3_bucket" "tf_bucket" {
   bucket_prefix = "tfstate-bucket"
   acl           = "private"
   force_destroy = true
-  tags = merge({ Name = "tfstate-bucket" }, var.tags)
+  tags          = merge({ Name = "tfstate-bucket" }, var.tags)
 }

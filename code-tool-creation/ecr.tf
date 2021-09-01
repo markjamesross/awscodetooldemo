@@ -17,7 +17,7 @@ resource "null_resource" "create_ecr_image2" {
 
   provisioner "local-exec" {
     interpreter = ["/bin/bash", "-c"]
-    command = <<EOF
+    command     = <<EOF
 cd ../docker-image
 sudo docker build . -t terraform
 ECR_PW=$(aws ecr get-login-password --region ${data.aws_region.current.name})

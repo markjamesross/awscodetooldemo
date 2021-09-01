@@ -128,13 +128,13 @@ resource "aws_codepipeline" "pipeline" {
   stage {
     name = "Security"
     action {
-      name             = "Security"
-      category         = "Build"
-      owner            = "AWS"
-      version          = "1"
-      provider         = "CodeBuild"
-      input_artifacts  = ["SourceOutput"]
-      run_order        = 4
+      name            = "Security"
+      category        = "Build"
+      owner           = "AWS"
+      version         = "1"
+      provider        = "CodeBuild"
+      input_artifacts = ["SourceOutput"]
+      run_order       = 4
       configuration = {
         ProjectName = aws_codebuild_project.codebuild_security.id
       }
@@ -144,13 +144,13 @@ resource "aws_codepipeline" "pipeline" {
   stage {
     name = "Plan"
     action {
-      name             = "Plan"
-      category         = "Build"
-      owner            = "AWS"
-      version          = "1"
-      provider         = "CodeBuild"
-      input_artifacts  = ["SourceOutput"]
-      run_order        = 4
+      name            = "Plan"
+      category        = "Build"
+      owner           = "AWS"
+      version         = "1"
+      provider        = "CodeBuild"
+      input_artifacts = ["SourceOutput"]
+      run_order       = 4
       configuration = {
         ProjectName = aws_codebuild_project.codebuild_plan.id
       }
@@ -160,25 +160,25 @@ resource "aws_codepipeline" "pipeline" {
   stage {
     name = "Approval"
     action {
-      name             = "Approval"
-      category         = "Approval"
-      run_order        = 5
-      owner            = "AWS"
-      version          = "1"
-      provider         = "Manual"
+      name      = "Approval"
+      category  = "Approval"
+      run_order = 5
+      owner     = "AWS"
+      version   = "1"
+      provider  = "Manual"
     }
   }
 
   stage {
     name = "Apply"
     action {
-      name             = "Apply"
-      category         = "Build"
-      owner            = "AWS"
-      version          = "1"
-      provider         = "CodeBuild"
-      input_artifacts  = ["SourceOutput"]
-      run_order        = 6
+      name            = "Apply"
+      category        = "Build"
+      owner           = "AWS"
+      version         = "1"
+      provider        = "CodeBuild"
+      input_artifacts = ["SourceOutput"]
+      run_order       = 6
       configuration = {
         ProjectName = aws_codebuild_project.codebuild_apply.id
       }
