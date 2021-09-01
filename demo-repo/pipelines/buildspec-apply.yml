@@ -1,0 +1,18 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - terraform -version
+      - terragrunt -version
+      - tflint --version
+      - tfsec -version
+      - aws --version
+  install:
+    commands:
+      - echo ***TERRAFORM INIT***
+      - ./pipelines/execute.sh "terragrunt init"
+  build:
+    commands:
+      - echo ***TERRAFORM APPLY***
+      - ./pipelines/execute.sh "terragrunt apply --auto-approve"

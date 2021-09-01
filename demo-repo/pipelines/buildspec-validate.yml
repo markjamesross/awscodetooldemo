@@ -1,0 +1,20 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - terraform -version
+      - terragrunt -version
+      - tflint --version
+      - tfsec -version
+      - aws --version
+  install:
+    commands:
+      - echo ***TERRAFORM INIT***
+      - ./pipelines/execute.sh "terragrunt init"
+  build:
+    commands:
+      - echo ***TERRAFORM VALIDATE***
+      - ./pipelines/execute.sh "terragrunt validate"
+      - echo ***CODE LINTING***
+      - ./pipelines/execute.sh "tflint --module"
