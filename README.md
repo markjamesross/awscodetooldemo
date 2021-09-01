@@ -19,3 +19,4 @@ run 'terraform apply'
 Demo code for using the AWS Code family to deploy resources using Terraform
 To deploy additional resources create folders in the repo created in CodeCommit in repo/test and amend execute.txt to list the directory structure
 
+![Code Tools Demo Image of AWS Resources](CodeTools.jpg)
