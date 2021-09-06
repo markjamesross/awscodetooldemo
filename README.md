@@ -7,7 +7,7 @@ AWS CLI
 Terraform (greater than v1.0)
 Docker
 Git
-AWS account with sufficient priveleges to deploy resources
+AWS account with sufficient priveleges to deploy resources and [credentials to use AWS Code Commit](https://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-gc.html)
 
 # Deployment instructions
 Login to AWS (e.g. access / secret access key), temporary command line credentials etc
