@@ -21,8 +21,11 @@ resource "null_resource" "create_ecr_image2" {
 cd ../docker-image
 sudo docker build . -t terraform
 ECR_PW=$(aws ecr get-login-password --region ${data.aws_region.current.name})
+echo ***Outputing ECR Token***
+echo $ECR_PW
 sudo docker login --username AWS --password $ECR_PW ${data.aws_caller_identity.current.account_id}.dkr.${data.aws_region.current.name}.amazonaws.com
 unset ECR_PW
+echo ***Uploading Image to ${aws_ecr_repository.image_repo.repository_url}***
 sudo docker tag terraform:latest ${aws_ecr_repository.image_repo.repository_url}:latest
 sudo docker push ${aws_ecr_repository.image_repo.repository_url}:latest
 cd ..
